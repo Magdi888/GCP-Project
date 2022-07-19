@@ -1,0 +1,5 @@
+region = "us-central1"
+zone = "us-central1-c"
+project = "durable-spot-354112"
+subnet1_cidr = "10.0.1.0/24"
+subnet2_cidr = "10.0.2.0/24"
