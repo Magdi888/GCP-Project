@@ -1,18 +1,13 @@
-resource "google_service_account" "manager_service_account" {
-  account_id   = "manager-account"
-  display_name = "manager_service_account"
-}
-
 resource "google_compute_instance" "manager-instance" {
   name         = "manager-instance"
-  machine_type = "n1-standard-1"
+  machine_type = var.machine_type
   zone         = "${var.region}-a"
 
   tags = ["managed-instance"]
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-11"
+      image = var.boot_disk_image
     }
   }
 
@@ -22,15 +17,20 @@ resource "google_compute_instance" "manager-instance" {
   }
 
   network_interface {
-    network = google_compute_subnetwork.management-subnetwork.name
+    subnetwork =  module.network.restricted_subnet_name
 
     
   }
 
   
   service_account {
-    # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
     email  = google_service_account.manager_service_account.email
     scopes = ["cloud-platform"]
   }
+  depends_on = [module.network.managed_subnet, module.gke.private_gke, module.gke.nodepool]
+
+  metadata_startup_script = file("./config_gcloud.sh")
+
+  
+
 }
