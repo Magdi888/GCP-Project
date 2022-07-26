@@ -4,7 +4,7 @@ resource "google_service_account" "gke_service_account" {
 }
 
 
-
+## role to can pull images from GCR
 resource "google_project_iam_member" "k8s_roles" {
   project = var.project
   role    = "roles/storage.objectViewer"
