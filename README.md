@@ -30,8 +30,7 @@
    terraform apply --var-file dev.tfvars
  ```
 ### Infrastructure
-![Untitled Diagram drawio](https://user-images.githubusercontent.com/91858017/180882339-2a2286bc-4f07-403a-936f-47a9ad9a7767.png)
-
+![Untitled Diagram-Page-1](https://user-images.githubusercontent.com/91858017/180895752-124e12ca-59be-45e2-828f-b6d03ed41856.jpg)
 - Connect to Private VM with ssh.
  ```
    gcloud compute ssh [machine name]
