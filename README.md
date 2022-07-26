@@ -1,6 +1,30 @@
 # GCP Project
 
+## Requirements:
+
+- The Application to be dockerized and pushed to GCR is on here: [Code](https://github.com/atefhares/DevOps-Challenge-Demo-Code)
+- Provision infrastructure on GCP with Terraform Consist of:
+  - VPC with two subnets:
+    - Management subnet has:
+      - Private VM.
+      - NAT gateway.
+    - Restricted subnet has:
+      - Private standard GKE cluster.
+- Deploy the application on the GKE cluster.
+- Deployment must be exposed to public internet with a public HTTP load balancer.
+
+## Description:
+
+- Restricted subnet must not have access to internet.
+- The VM must be private.
+- Deployment on GKE manually by kubectl tool.
+- Only the management subnet can connect to the GKE cluster.
+- Useing custom SA not the default one and attach it to our of GKE cluster nodes.
+
+# Steps:    
+
 ## Dockerize Python Web App from [DevOps-Challenge-Demo-Code](https://github.com/atefhares/DevOps-Challenge-Demo-Code)
+
 - Dockerfile [Click here](https://github.com/Magdi888/GCP-Project/blob/master/App/Dockerfile)
 - Authenticate to push images to GCR
  ```
@@ -16,7 +40,8 @@
 ## Provision infrastructure on GCP with Terraform.
 
 - Create Bucket to save Terraform state file.
-- Run 
+- Set the bucket name in backend.tf file.
+- Run the following:
  ```
   # Initialization terraform
    terraform init
