@@ -44,11 +44,11 @@
 - Copy K8s_resources directory to VM
 - Run command:
  ```
-  kubectl apply -Rf ./K8s_resources
+  kubectl create namespace dev
+  kubectl apply -Rf ./K8s_resources -n dev
  ```
 ### Web App Structure
-![Untitled Diagram-Page-2 drawio](https://user-images.githubusercontent.com/91858017/180893328-e330fb84-9997-4d6f-805d-f08d3b2cd5b5.png)
-
+![Untitled Diagram-Page-2 drawio (1)](https://user-images.githubusercontent.com/91858017/180895495-b349a142-4c8a-4f17-96d6-7b0464400202.png)
 - Get Web App IP
  ```
   kubectl get ingress
